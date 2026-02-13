@@ -1,0 +1,143 @@
+index.html
+<HTML>
+VEGTABLE GCLASS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fresh Vegetable Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#f2f2f2;
+  margin:0;
+}
+header {
+  background:green;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+.container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.card {
+  background:white;
+  width:220px;
+  margin:10px;
+  padding:10px;
+  border-radius:6px;
+  box-shadow:0 0 5px #aaa;
+}
+.card h3 {
+  margin:5px 0;
+}
+button {
+  background:green;
+  color:white;
+  border:none;
+  padding:7px;
+  cursor:pointer;
+  width:100%;
+}
+#cart {
+  background:white;
+  margin:15px;
+  padding:10px;
+  border-radius:6px;
+}
+footer {
+  background:#333;
+  color:white;
+  text-align:center;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🥕LAV ENTERPRISES</h1>
+  <p>Fresh Sabji • Home Delivery</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Tomato</h3>
+    <p>₹40 / kg</p>
+    <button onclick="addToCart('Tomato',40)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <h3>Potato</h3>
+    <p>₹25 / kg</p>
+    <button onclick="addToCart('Potato',25)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <h3>Onion</h3>
+    <p>₹30 / kg</p>
+    <button onclick="addToCart('Onion',30)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <h3>Cauliflower</h3>
+    <p>₹50 / piece</p>
+    <button onclick="addToCart('Cauliflower',50)">Add to Cart</button>
+  </div>
+
+</div>
+
+<div id="cart">
+  <h2>🛒 Cart</h2>
+  <ul id="cartItems"></ul>
+  <h3 id="total">Total: ₹0</h3>
+
+  <a id="whatsapp" target="_blank">
+    <button>Order on WhatsApp</button>
+  </a>
+</div>
+
+<footer>
+  <p>📞 Contact: 9354186726</p>
+  <p>📍 Local Delivery Only</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  total += price;
+  showCart();
+}
+
+function showCart() {
+  let list = document.getElementById("cartItems");
+  list.innerHTML = "";
+  let msg = "Vegetable Order:%0A";
+
+  cart.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item.name + " - ₹" + item.price;
+    list.appendChild(li);
+    msg += item.name + " - ₹" + item.price + "%0A";
+  });
+
+  document.getElementById("total").innerText = "Total: ₹" + total;
+  msg += "Total = ₹" + total;
+
+  document.getElementById("whatsapp").href =
+    "https://wa.me/919354186726?text=" + msg;
+}
+</script>
+
+</body>
+</html>
